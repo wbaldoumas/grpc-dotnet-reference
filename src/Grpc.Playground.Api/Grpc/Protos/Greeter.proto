@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.Playground.Api";
+
+import "Grpc/Protos/GreeterRequest.proto";
+import "Grpc/Protos/GreeterResponse.proto";
+
+service Greeter {
+	rpc Greet (GreeterRequest) returns (GreeterResponse);
+
+	rpc GreetMany (stream GreeterRequest) returns (GreeterResponse);
+
+	rpc GreetManyTimes (GreeterRequest) returns (stream GreeterResponse);
+
+	rpc GreetOnTheFly (stream GreeterRequest) returns (stream GreeterResponse);
+}
