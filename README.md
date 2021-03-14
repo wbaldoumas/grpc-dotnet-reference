@@ -41,7 +41,7 @@ A place to experiment with and learn gRPC in .NET!
   
 ### Create Protocol Buffers
 
-Protocol buffers are how you define your gRPC messages and services. Read more on the Protocol Buffer language guide [here](https://developers.google.com/protocol-buffers/docs/proto3).
+Protocol buffers are how you define your gRPC messages and services. Check out the [protocol buffer language guide](https://developers.google.com/protocol-buffers/docs/proto3) for more guidance on creating your protocol buffers.
 
 ```protobuf
 syntax = "proto3";
@@ -167,7 +167,7 @@ services.AddGrpc(options =>
 });
 ```
 
-Read more on service configuration options [here](https://docs.microsoft.com/en-us/aspnet/core/grpc/configuration?view=aspnetcore-5.0#configure-services-options).
+Read the [documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/configuration?view=aspnetcore-5.0#configure-services-options) for more on service configuration options.
 
 #### Configure Interceptors
 
@@ -201,7 +201,7 @@ services.AddGrpc().AddServiceOptions<GreeterService>(options =>
 });
 ```
 
-For more information on interceptors and their differences from ASP.NET middleware, see the [docs](https://docs.microsoft.com/en-us/aspnet/core/grpc/migration?view=aspnetcore-5.0#grpc-interceptors-vs-middleware).
+Check out the [documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/migration?view=aspnetcore-5.0#grpc-interceptors-vs-middleware) for more information on interceptors and their differences from ASP.NET middleware.
 
 #### Configure Logging
 
@@ -220,7 +220,7 @@ Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging
 }
 ```
 
-For more information and different ways of configuring gRPC service logging, read the docs [here](https://docs.microsoft.com/en-us/aspnet/core/grpc/diagnostics?view=aspnetcore-5.0#grpc-services-logging).
+For more information and different ways of configuring gRPC service logging, check out the [documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/diagnostics?view=aspnetcore-5.0#grpc-services-logging).
 
 ### Versioning gRPC Services
 
@@ -245,7 +245,7 @@ If you are adding a gRPC client for a service to an ASP.NET Core application, it
 
 #### Configure gRPC Clients
 
-Check out the [docs](https://docs.microsoft.com/en-us/aspnet/core/grpc/clientfactory?view=aspnetcore-5.0#register-grpc-clients) for information and examples of registering your gRPC clients.
+Check out the [documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/clientfactory?view=aspnetcore-5.0#register-grpc-clients) for information and examples of registering your gRPC clients.
 
 ```csharp
 services.AddGrpcClient<Greeter.GreeterClient>(o =>
@@ -256,7 +256,7 @@ services.AddGrpcClient<Greeter.GreeterClient>(o =>
 
 #### Configure HttpClient
 
-You can also configure your gRPC client's underlying HttpClient. Read the [docs](https://docs.microsoft.com/en-us/aspnet/core/grpc/clientfactory?view=aspnetcore-5.0#configure-httpclient) for more information and examples.
+You can also configure your gRPC client's underlying HttpClient. Read the [documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/clientfactory?view=aspnetcore-5.0#configure-httpclient) for more information and examples.
 
 ```csharp
 services
@@ -281,7 +281,7 @@ services
 
 #### Configure Logging
 
-Logging can also be configured for your gRPC client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging. You can find more information and examples on that in the [docs](https://docs.microsoft.com/en-us/aspnet/core/grpc/diagnostics?view=aspnetcore-5.0#grpc-client-logging) that cover gRPC client logging.
+Logging can also be configured for your gRPC client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging. You can find more information and examples on that in the [documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/diagnostics?view=aspnetcore-5.0#grpc-client-logging) that cover gRPC client logging.
 
 #### Configure Channel and Interceptors
 
@@ -302,11 +302,11 @@ services
 
 ### Configuring a gRPC Client Manually
 
-Configuring a gRPC client manualy (when not within an ASP.NET Core application) is relatively simple. Read the [docs](https://docs.microsoft.com/en-us/aspnet/core/grpc/deadlines-cancellation?view=aspnetcore-5.0) for more information or check out the [code examples](https://github.com/itabaiyu/grpc-dotnet-playground/blob/main/src/Grpc.Playground.App/Grpc/GreeterClientConfigurator.cs) in this repository to see it in action.
+Configuring a gRPC client manualy (when not within an ASP.NET Core application) is relatively simple. Read the [documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/deadlines-cancellation?view=aspnetcore-5.0) for more information or check out the [code examples](https://github.com/itabaiyu/grpc-dotnet-playground/blob/main/src/Grpc.Playground.App/Grpc/GreeterClientConfigurator.cs) in this repository to see it in action.
 
 ### Deadlines Cancellation and Call Context Propagation
 
-Deadlines, cancellation, and call context propagation are all important for standing up a reliable gRPC client and should be configured. See the [docs](https://docs.microsoft.com/en-us/aspnet/core/grpc/deadlines-cancellation?view=aspnetcore-5.0) for more information on this topic and code examples.
+Deadlines, cancellation, and call context propagation are all important for standing up a reliable gRPC client and should be configured. See the [documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/deadlines-cancellation?view=aspnetcore-5.0) for more information on this topic and code examples.
 
 ### Handling Transient Failures
 
