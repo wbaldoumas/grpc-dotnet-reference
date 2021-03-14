@@ -1,7 +1,29 @@
 # grpc-dotnet-playground
 A place to experiment with and learn gRPC in .NET!
 
-### Add gRPC Services in Startup
+  * [Resources](#resources)
+  * [Creating and Configuring a gRPC Service](#creating-and-configuring-a-grpc-service)
+    + [Required and Useful NuGet Packages](#required-and-useful-nuget-packages)
+    + [Create Protocol Buffers](#create-protocol-buffers)
+    + [Service Implementation](#service-implementation)
+    + [Add gRPC Services in Startup](#add-grpc-services-in-startup)
+      - [Configure Services](#configure-services)
+      - [Configure Interceptors](#configure-interceptors)
+      - [Configure Logging](#configure-logging)
+    + [Versioning gRPC Services](#versioning-grpc-services)
+  * [Creating and Configuring a gRPC Client](#creating-and-configuring-a-grpc-client)
+    + [Required and Useful NuGet Packages](#required-and-useful-nuget-packages-1)
+    + [Create Protocol Buffers](#create-protocol-buffers-1)
+    + [Add gRPC Clients in Startup](#add-grpc-clients-in-startup)
+      - [Configure gRPC Clients](#configure-grpc-clients)
+      - [Configure HttpClient](#configure-httpclient)
+      - [Configure Logging](#configure-logging)
+      - [Configure Channel and Interceptors](#configure-channel-and-interceptors)
+    + [Configuring a gRPC Client Manually](#configuring-a-grpc-client-manually)
+    + [Deadlines Cancellation and Call Context Propagation](#deadlines-cancellation-and-call-context-propagation)
+    + [Handling Transient Failures](#handling-transient-failures)
+  * [Performance Best Practices](#performance-best-practices)
+  * [Miscellaneous Links](#miscellaneous-links)
 
 ## Resources
 
@@ -17,7 +39,7 @@ A place to experiment with and learn gRPC in .NET!
 - [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore)
 - [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf)
   
-### Create .proto Files
+### Create Protocol Buffers
 
 Protocol buffers are how you define your gRPC messages and services. Read more on the Protocol Buffer language guide [here](https://developers.google.com/protocol-buffers/docs/proto3).
 
@@ -57,7 +79,7 @@ service Greeter {
 }
 ```
 
-### Create Service Implementation
+### Service Implementation
 
 Once your messages and services are defined, you can implement your gRPC service:
 
@@ -132,7 +154,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-#### Service Configuration
+#### Configure Services
 
 gRPC services can optionally be configured during `Startup` as well, with configuration options:
 
@@ -147,7 +169,7 @@ services.AddGrpc(options =>
 
 Read more on service configuration options [here](https://docs.microsoft.com/en-us/aspnet/core/grpc/configuration?view=aspnetcore-5.0#configure-services-options).
 
-#### Service Interceptors
+#### Configure Interceptors
 
 Service interceptors are similar to middleware in that they can be used to include code that runs before and after your service operations. Here's an example of an interceptor that intercepts unary requests processed by the service:
 
@@ -181,7 +203,7 @@ services.AddGrpc().AddServiceOptions<GreeterService>(options =>
 
 For more information on interceptors and their differences from ASP.NET middleware, see the [docs](https://docs.microsoft.com/en-us/aspnet/core/grpc/migration?view=aspnetcore-5.0#grpc-interceptors-vs-middleware).
 
-#### Configuring Logging:
+#### Configure Logging
 
 Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system and can be configured via `appsettings.json`:
 
@@ -200,7 +222,7 @@ Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging
 
 For more information and different ways of configuring gRPC service logging, read the docs [here](https://docs.microsoft.com/en-us/aspnet/core/grpc/diagnostics?view=aspnetcore-5.0#grpc-services-logging).
 
-#### Versioning gRPC Services
+### Versioning gRPC Services
 
 Versioning gRPC services in order to maintain backwards compatability is a complex topic that deserves careful consideration, especially when initially desigining your protocol buffers. Read more on that [here](https://docs.microsoft.com/en-us/aspnet/core/grpc/versioning?view=aspnetcore-5.0).
 
@@ -213,15 +235,15 @@ Versioning gRPC services in order to maintain backwards compatability is a compl
 - [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf)
 - [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory)
 
-### Create .proto Files
+### Create Protocol Buffers
 
 gRPC clients should be based on the same protocol buffers that are defined and used by the underlying gRPC service the client will be talking to. See example of prtocol buffer messages and services above.
 
-### Configuring a gRPC Client in an ASP.NET Core Application
+### Add gRPC Clients in Startup
 
 If you are adding a gRPC client for a service to an ASP.NET Core application, it can be added by leveraging the [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory), which reuses underlying channels for services when new clients are created. Check out the [documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/clientfactory?view=aspnetcore-5.0).
 
-#### Register gRPC clients
+#### Configure gRPC Clients
 
 Check out the [docs](https://docs.microsoft.com/en-us/aspnet/core/grpc/clientfactory?view=aspnetcore-5.0#register-grpc-clients) for information and examples of registering your gRPC clients.
 
@@ -278,15 +300,15 @@ services
     });
 ```
 
-#### Configuring a gRPC Client Manually
+### Configuring a gRPC Client Manually
 
 Configuring a gRPC client manualy (when not within an ASP.NET Core application) is relatively simple. Read the [docs](https://docs.microsoft.com/en-us/aspnet/core/grpc/deadlines-cancellation?view=aspnetcore-5.0) for more information or check out the [code examples](https://github.com/itabaiyu/grpc-dotnet-playground/blob/main/src/Grpc.Playground.App/Grpc/GreeterClientConfigurator.cs) in this repository to see it in action.
 
-#### Deadlines, Cancellation, and Call Context Propagation
+### Deadlines Cancellation and Call Context Propagation
 
 Deadlines, cancellation, and call context propagation are all important for standing up a reliable gRPC client and should be configured. See the [docs](https://docs.microsoft.com/en-us/aspnet/core/grpc/deadlines-cancellation?view=aspnetcore-5.0) for more information on this topic and code examples.
 
-#### Handling Transient Failures
+### Handling Transient Failures
 
 Transient failures are something that will ultimately happen. These can be handled by gRPC clients by configuring retries and hedging. Read more on how these can be configured [here](https://docs.microsoft.com/en-us/aspnet/core/grpc/retries?view=aspnetcore-5.0) as well as general guidance for retries [here](https://docs.microsoft.com/en-us/azure/architecture/best-practices/transient-faults).
 
