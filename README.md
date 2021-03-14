@@ -10,8 +10,6 @@ A place to experiment with and learn gRPC in .NET!
 - [MSDN's gRPC Documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/?view=aspnetcore-5.0)
 - [grpc-dotnet Code Examples](https://github.com/grpc/grpc-dotnet/tree/master/examples)
 
----
-
 ## Creating and Configuring a gRPC Service
 
 ### Required and Useful NuGet Packages
@@ -172,7 +170,7 @@ public class MetricLoggingInterceptor : Interceptor
 }
 ```
 
-Interceptors can be added to a service within `Startup.cs`:
+Interceptors can be added to a service within `Startup`:
 
 ```csharp
 services.AddGrpc().AddServiceOptions<GreeterService>(options =>
@@ -205,8 +203,6 @@ For more information and different ways of configuring gRPC service logging, rea
 #### Versioning gRPC Services
 
 Versioning gRPC services in order to maintain backwards compatability is a complex topic that deserves careful consideration, especially when initially desigining your protocol buffers. Read more on that [here](https://docs.microsoft.com/en-us/aspnet/core/grpc/versioning?view=aspnetcore-5.0).
-
----
 
 ## Creating and Configuring a gRPC Client
 
@@ -294,13 +290,11 @@ Deadlines, cancellation, and call context propagation are all important for stan
 
 Transient failures are something that will ultimately happen. These can be handled by gRPC clients by configuring retries and hedging. Read more on how these can be configured [here](https://docs.microsoft.com/en-us/aspnet/core/grpc/retries?view=aspnetcore-5.0) as well as general guidance for retries [here](https://docs.microsoft.com/en-us/azure/architecture/best-practices/transient-faults).
 
----
-
-### Performance Best Practices
+## Performance Best Practices
 
 Read the [documentation](https://docs.microsoft.com/en-us/aspnet/core/grpc/performance?view=aspnetcore-5.0) for performance best practices guidance.
 
-### Miscellaneous Links
+## Miscellaneous Links
 
 - [Call gRPC services with the .NET client](https://docs.microsoft.com/en-us/aspnet/core/grpc/client?view=aspnetcore-5.0)
 - [Performance Best Practices](https://docs.microsoft.com/en-us/aspnet/core/grpc/performance?view=aspnetcore-5.0)
