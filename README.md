@@ -1,5 +1,4 @@
-# grpc-dotnet-playground
-A place to experiment with and learn gRPC in .NET!
+# grpc-dotnet-reference
 
   * [Resources](#resources)
   * [Creating and Configuring a gRPC Service](#creating-and-configuring-a-grpc-service)
